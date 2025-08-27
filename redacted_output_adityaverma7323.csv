@@ -1,0 +1,172 @@
+record_id,redacted_data_json,is_pii
+1,"{""customer_id"": ""CUST001"", ""phone"": ""98XXXXXX10"", ""order_value"": 1299}",True
+2,"{""name"": ""RXXXXX KXXXX"", ""email"": ""raXXXXXXXXXX@email.com"", ""city"": ""Mumbai""}",True
+3,"{""first_name"": ""Priya"", ""product"": ""iPhone 14"", ""category"": ""Electronics""}",False
+4,"{""aadhar"": ""1234XXXX XXXX"", ""transaction_type"": ""purchase""}",True
+5,"{""email"": ""standalone@email.com"", ""product_id"": ""PROD123""}",False
+6,"{""name"": ""AXXX SXXXX"", ""address"": ""[REDACTED_PII]"", ""ip_address"": ""[REDACTED_PII]""}",True
+7,"{""city"": ""Delhi"", ""pin_code"": ""110001"", ""product_category"": ""Fashion""}",False
+8,"{""upi_id"": ""usXXXXX@paytm"", ""amount"": 500}",True
+9,"{""last_name"": ""Sharma"", ""order_id"": ""ORD789456""}",False
+10,"{""passport"": ""PXXXXXXX"", ""booking_reference"": ""BK123""}",True
+11,"{""device_id"": ""DEV456789"", ""app_version"": ""2.1.4""}",False
+12,"{""name"": ""SXXXX PXXXX"", ""email"": ""snXXXXXXXXX@gmail.com"", ""device_id"": ""[REDACTED_PII]""}",True
+13,"{""transaction_id"": ""TXN987654"", ""amount"": 2500, ""status"": ""completed""}",False
+14,"{""phone"": ""87XXXXXX09"", ""order_date"": ""2024-01-15""}",True
+15,"{""state"": ""Maharashtra"", ""product_name"": ""Laptop Bag""}",False
+16,"{""name"": ""VXXXXX RXXXX"", ""address"": ""[REDACTED_PII]"", ""email"": ""viXXXX@company.com""}",True
+17,"{""first_name"": ""Anita"", ""last_name_initial"": ""K"", ""age"": 28}",False
+18,"{""aadhar"": ""9876XXXX XXXX"", ""verification_status"": ""verified""}",True
+19,"{""email"": ""customer@service.com"", ""query_type"": ""refund""}",False
+20,"{""upi_id"": ""91XXXXXXXX@ybl"", ""merchant"": ""Flipkart""}",True
+21,"{""product_description"": ""Samsung Galaxy S23"", ""price"": 65000}",False
+22,"{""name"": ""DXXXXXX AXXXXXX"", ""phone"": ""78XXXXXX56"", ""email"": ""deXXXXX@email.com""}",True
+23,"{""pin_code"": ""400001"", ""delivery_date"": ""2024-02-10""}",False
+24,"{""passport"": ""MXXXXXXX"", ""travel_date"": ""2024-03-15""}",True
+25,"{""customer_segment"": ""Premium"", ""loyalty_points"": 1500}",False
+26,"{""name"": ""RXXX GXXXX"", ""address"": ""[REDACTED_PII]"", ""ip_address"": ""[REDACTED_PII]""}",True
+27,"{""order_type"": ""Express"", ""shipping_method"": ""same_day""}",False
+28,"{""phone"": ""67XXXXXX45"", ""sms_consent"": true}",True
+29,"{""username"": ""techguru"", ""last_login"": ""2024-01-20""}",False
+30,"{""aadhar"": ""4567XXXX XXXX"", ""kyc_status"": ""pending""}",True
+31,"{""category"": ""Books"", ""author"": ""Chetan Bhagat""}",False
+32,"{""name"": ""MXXXX JXXXX"", ""email"": ""meXXXXX@workplace.com"", ""device_type"": ""Android""}",True
+33,"{""session_id"": ""SESS789123"", ""duration"": ""45 minutes""}",False
+34,"{""upi_id"": ""meXXXXXX@okaxis"", ""payment_method"": ""UPI""}",True
+35,"{""region"": ""North India"", ""warehouse_code"": ""WH001""}",False
+36,"{""name"": ""AXXXX MXXXXXXX"", ""address"": ""[REDACTED_PII]"", ""phone"": ""90XXXXXX78""}",True
+37,"{""subscription_type"": ""Premium"", ""renewal_date"": ""2024-06-15""}",False
+38,"{""passport"": ""LXXXXXXX"", ""country"": ""India""}",True
+39,"{""first_name"": ""Kavya"", ""gender"": ""Female"", ""age_group"": ""25-35""}",False
+40,"{""aadhar"": ""2345XXXX XXXX"", ""bank_verification"": ""success""}",True
+41,"{""brand"": ""Nike"", ""model"": ""Air Max"", ""size"": ""9""}",False
+42,"{""name"": ""SXXXXXXXX NXXX"", ""email"": ""siXXXXXX@tech.com"", ""ip_address"": ""[REDACTED_PII]""}",True
+43,"{""currency"": ""INR"", ""exchange_rate"": 83.25}",False
+44,"{""phone"": ""89XXXXXX67"", ""notification_preference"": ""SMS""}",True
+45,"{""product_rating"": 4.5, ""review_count"": 150}",False
+46,"{""upi_id"": ""faXXXXXXXXXXX@ibl"", ""family_size"": 4}",True
+47,"{""zip_code"": ""560001"", ""delivery_zone"": ""Zone_A""}",False
+48,"{""name"": ""PXXXX DXXXX"", ""address"": ""[REDACTED_PII]"", ""email"": ""poXXXXXXXXX@email.in""}",True
+49,"{""app_name"": ""Flipkart"", ""version"": ""8.21.0""}",False
+50,"{""passport"": ""KXXXXXXX"", ""issue_date"": ""2020-05-10""}",True
+51,"{""last_name"": ""Iyer"", ""profession"": ""Software Engineer""}",False
+52,"{""aadhar"": ""3456XXXX XXXX"", ""address_proof"": ""verified""}",True
+53,"{""email"": ""support@flipkart.com"", ""ticket_id"": ""TICK456""}",False
+54,"{""name"": ""RXXXX KXXXXXXX"", ""phone"": ""70XXXXXX89"", ""device_id"": ""[REDACTED_PII]""}",True
+55,"{""search_query"": ""bluetooth headphones"", ""filters"": ""price,brand""}",False
+56,"{""upi_id"": ""87XXXXXXXX@paytm"", ""auto_debit"": true}",True
+57,"{""state_code"": ""MH"", ""gst_number"": ""27ABCDE1234F1Z5""}",False
+58,"{""name"": ""LXXXXXX VXXXXX"", ""email"": ""laXXXXXXX@company.org"", ""address"": ""[REDACTED_PII]""}",True
+59,"{""feature_flag"": ""new_checkout"", ""enabled"": true}",False
+60,"{""phone"": ""93XXXXXX12"", ""otp_verification"": ""pending""}",True
+61,"{""discount_code"": ""SAVE20"", ""validity"": ""2024-03-31""}",False
+62,"{""passport"": ""AXXXXXXX"", ""nationality"": ""Indian""}",True
+63,"{""first_name"": ""Rohan"", ""wishlist_count"": 15}",False
+64,"{""aadhar"": ""5678XXXX XXXX"", ""biometric_status"": ""matched""}",True
+65,"{""payment_gateway"": ""Razorpay"", ""transaction_fee"": 25}",False
+66,"{""name"": ""NXXXX BXXXXX"", ""address"": ""[REDACTED_PII]"", ""ip_address"": ""[REDACTED_PII]""}",True
+67,"{""inventory_id"": ""INV789"", ""stock_level"": 50}",False
+68,"{""upi_id"": ""buXXXXXX@axisbank"", ""merchant_category"": ""retail""}",True
+69,"{""city"": ""Hyderabad"", ""weather"": ""partly_cloudy""}",False
+70,"{""phone"": ""84XXXXXX23"", ""call_preference"": ""evening""}",True
+71,"{""coupon_code"": ""FIRST10"", ""usage_count"": 1}",False
+72,"{""name"": ""KXXXXXX SXXXXXXXXXX"", ""email"": ""kaXXXXXXX@work.com"", ""device_type"": ""iOS""}",True
+73,"{""logistics_partner"": ""BlueDart"", ""tracking_id"": ""BD123456789""}",False
+74,"{""passport"": ""HXXXXXXX"", ""expiry_date"": ""2030-12-15""}",True
+75,"{""age"": 32, ""income_bracket"": ""middle_class""}",False
+76,"{""aadhar"": ""6789XXXX XXXX"", ""mobile_linked"": true}",True
+77,"{""return_reason"": ""size_issue"", ""refund_amount"": 899}",False
+78,"{""name"": ""DXXXX SXXXXX"", ""phone"": ""71XXXXXX90"", ""email"": ""diXXX@personal.com""}",True
+79,"{""seller_id"": ""SELLER001"", ""rating"": 4.2}",False
+80,"{""upi_id"": ""shXX@hdfcbank"", ""settlement_cycle"": ""T+2""}",True
+81,"{""recommendation_type"": ""collaborative"", ""confidence"": 0.85}",False
+82,"{""name"": ""MXXXXX AXXXXXX"", ""address"": ""[REDACTED_PII]"", ""email"": ""maXXXXXXX@email.com""}",True
+83,"{""api_version"": ""v2.1"", ""response_time"": ""120ms""}",False
+84,"{""phone"": ""95XXXXXX23"", ""language_preference"": ""Hindi""}",True
+85,"{""last_name"": ""Reddy"", ""occupation"": ""Doctor""}",False
+86,"{""passport"": ""TXXXXXXX"", ""visa_required"": false}",True
+87,"{""affiliate_id"": ""AFF789"", ""commission_rate"": 5}",False
+88,"{""aadhar"": ""7890XXXX XXXX"", ""ekyc_timestamp"": ""2024-01-15T10:30:00Z""}",True
+89,"{""utm_source"": ""google"", ""campaign"": ""winter_sale""}",False
+90,"{""name"": ""AXXXXX RXX"", ""email"": ""anXXXXXXXX@university.edu"", ""ip_address"": ""[REDACTED_PII]""}",True
+91,"{""fraud_score"": 0.15, ""risk_level"": ""low""}",False
+92,"{""upi_id"": ""78XXXXXXXX@ybl"", ""bank_name"": ""State Bank""}",True
+93,"{""search_filter"": ""electronics"", ""sort_by"": ""price_low_to_high""}",False
+94,"{""phone"": ""82XXXXXX90"", ""two_factor_auth"": true}",True
+95,"{""first_name"": ""Arun"", ""cart_value"": 2500}",False
+96,"{""name"": ""PXXXXX KXXXXXXX"", ""address"": ""[REDACTED_PII]"", ""phone"": ""67XXXXXX45""}",True
+97,"{""machine_learning_model"": ""recommendation_v3"", ""accuracy"": 0.92}",False
+98,"{""passport"": ""RXXXXXXX"", ""place_of_issue"": ""Mumbai""}",True
+99,"{""city"": ""Bangalore"", ""traffic_condition"": ""moderate""}",False
+100,"{""aadhar"": ""8901XXXX XXXX"", ""consent_given"": true}",True
+101,"{""email"": ""newsletter@flipkart.com"", ""unsubscribe_rate"": 0.02}",False
+102,"{""name"": ""SXXXXX PXXXXX"", ""email"": ""suXXXXXXXXXXX@office.com"", ""device_id"": ""[REDACTED_PII]""}",True
+103,"{""performance_metric"": ""page_load_time"", ""value"": ""2.1s""}",False
+104,"{""upi_id"": ""quXXXXXX@kotak"", ""limit_daily"": 50000}",True
+105,"{""last_name"": ""Gupta"", ""education"": ""MBA""}",False
+106,"{""phone"": ""79XXXXXX67"", ""marketing_consent"": false}",True
+107,"{""analytics_event"": ""product_view"", ""timestamp"": ""2024-01-20T14:22:33Z""}",False
+108,"{""name"": ""RXXXXX JXXX"", ""address"": ""[REDACTED_PII]"", ""email"": ""raXXXX@workplace.in""}",True
+109,"{""cache_hit_ratio"": 0.78, ""response_cached"": true}",False
+110,"{""passport"": ""SXXXXXXX"", ""passport_type"": ""ordinary""}",True
+111,"{""first_name"": ""Vivek"", ""subscription_status"": ""active""}",False
+112,"{""aadhar"": ""9012XXXX XXXX"", ""demographic_verified"": true}",True
+113,"{""a_b_test"": ""checkout_flow_v2"", ""variant"": ""B""}",False
+114,"{""name"": ""KXXXXX MXXXX"", ""phone"": ""83XXXXXX01"", ""email"": ""kaXXXXXXXXXX@gmail.com""}",True
+115,"{""geo_location"": ""lat:12.9716,lng:77.5946"", ""accuracy"": ""10m""}",False
+116,"{""upi_id"": ""65XXXXXXXX@paytm"", ""merchant_type"": ""individual""}",True
+117,"{""database_query"": ""SELECT * FROM products"", ""execution_time"": ""45ms""}",False
+118,"{""phone"": ""98XXXXXX10"", ""device_brand"": ""Samsung""}",True
+119,"{""last_name"": ""Singh"", ""marital_status"": ""married""}",False
+120,"{""name"": ""AXXXX PXXXXX"", ""address"": ""[REDACTED_PII]"", ""ip_address"": ""[REDACTED_PII]""}",True
+121,"{""content_type"": ""application/json"", ""encoding"": ""utf-8""}",False
+122,"{""passport"": ""Q8527419"", ""biometric_enrolled"": true}",False
+123,"{""city"": ""Coimbatore"", ""pincode"": ""641001""}",False
+124,"{""aadhar"": ""0123XXXX XXXX"", ""otp_verified"": true}",True
+125,"{""recommendation_engine"": ""neural_cf"", ""training_date"": ""2024-01-01""}",False
+126,"{""name"": ""GXXXXX RXXXX"", ""email"": ""geXXXXXXXXXX@company.com"", ""device_type"": ""Desktop""}",True
+127,"{""webhook_url"": ""https://api.example.com/webhook"", ""status"": ""active""}",False
+128,"{""upi_id"": ""shXXXXXX@icici"", ""autopay_enabled"": false}",True
+129,"{""first_name"": ""Mohit"", ""preferred_language"": ""English""}",False
+130,"{""phone"": ""74XXXXXX12"", ""carrier"": ""Airtel""}",True
+131,"{""inventory_turnover"": 4.2, ""stock_out_rate"": 0.08}",False
+132,"{""name"": ""SXXXXX KXXXXX"", ""address"": ""[REDACTED_PII]"", ""phone"": ""80XXXXXX79""}",True
+133,"{""service_level"": ""premium"", ""response_time_sla"": ""< 1 hour""}",False
+134,"{""passport"": ""BXXXXXXX"", ""emergency_contact"": ""+91-9876543210""}",True
+135,"{""last_name"": ""Nair"", ""hobby"": ""photography""}",False
+136,"{""aadhar"": ""1234XXXX XXXX"", ""photo_verification"": ""passed""}",True
+137,"{""feature_toggle"": ""new_ui"", ""rollout_percentage"": 25}",False
+138,"{""name"": ""HXXXXX KXXXX"", ""email"": ""haXXXXXXXXXX@tech.org"", ""ip_address"": ""[REDACTED_PII]""}",True
+139,"{""data_pipeline"": ""etl_v2"", ""processed_records"": 1000000}",False
+140,"{""upi_id"": ""54XXXXXXXX@ybl"", ""transaction_limit"": 100000}",True
+141,"{""search_algorithm"": ""elasticsearch"", ""index_size"": ""2.5GB""}",False
+142,"{""phone"": ""91XXXXXX89"", ""roaming_status"": false}",True
+143,"{""city"": ""Kochi"", ""state"": ""Kerala""}",False
+144,"{""name"": ""RXXXXX SXXXXX"", ""address"": ""[REDACTED_PII]"", ""email"": ""riXXXX@company.net""}",True
+145,"{""microservice"": ""user_service"", ""health_status"": ""healthy""}",False
+146,"{""passport"": ""NXXXXXXX"", ""pages_remaining"": 28}",True
+147,"{""first_name"": ""Deepak"", ""loyalty_tier"": ""gold""}",False
+148,"{""aadhar"": ""2345XXXX XXXX"", ""fingerprint_matched"": true}",True
+149,"{""cdn_cache"": ""cloudflare"", ""hit_ratio"": 0.89}",False
+150,"{""name"": ""PXXXXXXX CXXXXXXXX"", ""phone"": ""78XXXXXX56"", ""email"": ""prXXXXXXXX@personal.in""}",True
+151,"{""log_level"": ""INFO"", ""message"": ""Transaction completed successfully""}",False
+152,"{""upi_id"": ""faXXXX@sbi"", ""beneficiary_count"": 3}",True
+153,"{""machine_id"": ""ML789"", ""cpu_utilization"": 65}",False
+154,"{""phone"": ""85XXXXXX23"", ""do_not_disturb"": true}",True
+155,"{""last_name"": ""Mishra"", ""department"": ""Engineering""}",False
+156,"{""name"": ""AXXXX BXXXX"", ""address"": ""[REDACTED_PII]"", ""ip_address"": ""[REDACTED_PII]""}",True
+157,"{""kubernetes_pod"": ""api-server-v2"", ""replicas"": 3}",False
+158,"{""passport"": ""GXXXXXXX"", ""sponsor_required"": false}",True
+159,"{""city"": ""Indore"", ""region"": ""Central India""}",False
+160,"{""aadhar"": ""3456XXXX XXXX"", ""iris_scan"": ""verified""}",True
+161,"{""email"": ""admin@system.com"", ""role"": ""system_admin""}",False
+162,"{""name"": ""SXXXXX JXXXX"", ""email"": ""saXXXXXXXXXX@workplace.com"", ""device_id"": ""[REDACTED_PII]""}",True
+163,"{""ssl_certificate"": ""valid"", ""expiry"": ""2024-12-31""}",False
+164,"{""upi_id"": ""43XXXXXXXX@okaxis"", ""insurance_linked"": true}",True
+165,"{""first_name"": ""Neha"", ""age_verification"": ""completed""}",False
+166,"{""phone"": ""92XXXXXX90"", ""backup_number"": ""+91-8765432109""}",True
+167,"{""monitoring_alert"": ""high_memory_usage"", ""threshold_exceeded"": true}",False
+168,"{""name"": ""VXXXXX AXXXXXX"", ""address"": ""[REDACTED_PII]"", ""phone"": ""73XXXXXX01""}",True
+169,"{""load_balancer"": ""nginx"", ""upstream_servers"": 4}",False
+170,"{""passport"": ""FXXXXXXX"", ""travel_history"": ""USA,UAE,UK""}",True
+171,"{""last_name"": ""Patel"", ""blood_group"": ""O+""}",False
