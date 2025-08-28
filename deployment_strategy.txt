@@ -1,0 +1,38 @@
+Protecting PII at the Gateway
+The best place to catch and clean sensitive data is right at the front door—before it enters our systems or goes out to partners. That’s why putting our PII detection and redaction logic in the API Gateway (or as a sidecar container for ingress traffic) is the most effective move. This means every API request and response can be scanned and cleaned before anything lands in logs, databases, or is shown in internal dashboards.
+
+Why the Gateway?
+Scalability:
+As our business grows and new microservices or APIs get added, everything flows through the Gateway. We don’t need to keep updating every backend—protection is centralized.
+
+Performance:
+Gateway plugins/add-ons are designed for speed. Our regex rules or detection models will run fast enough that users don’t notice any lag in their experience.
+
+Cost Savings:
+Preventing leaks early means less firefighting later—no database cleaning, no log filtering, no costly breaches to fix.
+
+Integration Ease:
+We don’t disrupt developer workflows. Roll out an update on the Gateway and all services are covered, even those built years ago.
+
+How It Works
+Intercept:
+The Gateway, or its companion sidecar, catches every API call—whether it’s coming in or going out.
+
+Detect & Redact:
+It applies our detection logic (using both simple rules and smarter models if needed). If PII is spotted, it’s masked right away. Only clean data gets forwarded, logged, or used.
+
+Audit-Friendly Logging:
+We log only what’s safe, making it easier for compliance checks and less risky for internal and external consumers.
+
+Future-Proofing
+We can always add smarter models—like Named Entity Recognition—into the Gateway if our needs grow, for things like chat or comment scanning.
+
+As we move to new stacks or traffic patterns, our central policy at the Gateway keeps us covered.
+
+Simple monitoring tools or browser plugins can give our ops team visibility, without changing how anyone builds features.
+
+Why This Strategy Works
+By putting protection at the edge—in the API Gateway or ingress—we avoid chasing leaks after the fact. It’s easy to maintain, proven to scale, and keeps our systems flexible for all the new services we’ll add. Plus, it’s friendly to both engineers and business: better security with less hassle and more trust for everyone.
+
+In summary:
+Route all traffic through a PII-aware gateway. Mask any sensitive info before it goes deeper into our stack. Easy to integrate, cost-effective, and ready for future extensions—this keeps our business secure as it grows.
