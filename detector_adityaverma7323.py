@@ -1,16 +1,17 @@
 import csv
 import json
 import re
+import sys
 
-# Regular expressions for PII detection
-phone_pattern = re.compile(r"^\d{10}$")
-aadhar_pattern = re.compile(r"^\d{12}$")
-passport_pattern = re.compile(r"^[A-PR-WY][0-9]{7}$")  # Example format: P1234567
-upi_pattern = re.compile(r"^[\w.\-]{2,256}@[a-zA-Z]{2,32}$")
-email_pattern = re.compile(r"[^@]+@[^@]+\.[^@]+")  # Simple email pattern
-ip_pattern = re.compile(r"^(\d{1,3}\.){3}\d{1,3}$")
+###### Define REGEX patterns for PII 
+PHONE_PATTERN = re.compile(r"^\d{10}$")                      # 10-digit phone number
+AADHAR_PATTERN = re.compile(r"^\d{12}$")                     # 12-digit Aadhar
+PASSPORT_PATTERN = re.compile(r"^[A-PR-WYa-pr-wy][0-9]{7}$") # Indian passport
+UPI_PATTERN = re.compile(r"^[\w\.\-]{2,256}@[a-zA-Z]{2,32}$")# UPI ID
+EMAIL_PATTERN = re.compile(r"[^@]+@[^@]+\.[^@]+")            # Email
+IP_PATTERN = re.compile(r"^(\d{1,3}\.){3}\d{1,3}$")          # IPv4
 
-# Functions to mask/redact PII
+###### Masking functions
 def mask_phone(phone):
     return phone[:2] + "XXXXXX" + phone[-2:]
 
@@ -20,115 +21,128 @@ def mask_aadhar(aadhar):
 def mask_passport(passport):
     return passport[0] + "XXXXXXX"
 
-def mask_name(full_name):
-    parts = full_name.split()
-    masked_parts = [p[0] + "X" * (len(p) - 1) for p in parts]
-    return " ".join(masked_parts)
+def mask_name(name):
+    parts = name.split()
+    # Each part: first letter + all X's
+    return " ".join([p[0] + "X" * (len(p)-1) for p in parts])
 
 def mask_email(email):
-    user, domain = email.split("@")
-    masked_user = user[:2] + "X" * (len(user) - 2)
-    return masked_user + "@" + domain
+    try:
+        user, domain = email.split("@")
+    except ValueError:
+        return "[REDACTED_PII]"
+    return user[:2] + "X" * max(len(user)-2,0) + "@" + domain
 
-def mask_upi(upi_id):
-    user, domain = upi_id.split("@")
-    masked_user = user[:2] + "X" * (len(user) - 2)
-    return masked_user + "@" + domain
+def mask_upi(upi):
+    try:
+        user, bank = upi.split("@")
+    except ValueError:
+        return "[REDACTED_PII]"
+    return user[:2] + "X" * max(len(user)-2,0) + "@" + bank
 
-# Lists of fields that are standalone PII or combinatorial PII
-standalone_pii_fields = ["phone", "aadhar", "passport", "upi_id"]
-combinatorial_pii_fields = ["name", "email", "address", "device_id", "ip_address"]
+###### Helper lists
+STANDALONE_PII = ['phone', 'aadhar', 'passport', 'upi_id']
+COMBINATORIAL_PII = ['name', 'email', 'address', 'device_id', 'ip_address']
 
 def is_standalone_pii(field, value):
-    value = str(value)
-    if field == "phone" and phone_pattern.fullmatch(value):
+    if field == 'phone' and PHONE_PATTERN.match(value):
         return True
-    if field == "aadhar" and aadhar_pattern.fullmatch(value):
+    if field == 'aadhar' and AADHAR_PATTERN.match(value):
         return True
-    if field == "passport" and passport_pattern.fullmatch(value):
+    if field == 'passport' and PASSPORT_PATTERN.match(value):
         return True
-    if field == "upi_id" and upi_pattern.fullmatch(value):
+    if field == 'upi_id' and UPI_PATTERN.match(value):
         return True
     return False
 
 def redact_standalone(field, value):
-    if field == "phone":
+    # Field-specific masking
+    if field == 'phone':
         return mask_phone(value)
-    if field == "aadhar":
+    if field == 'aadhar':
         return mask_aadhar(value)
-    if field == "passport":
+    if field == 'passport':
         return mask_passport(value)
-    if field == "upi_id":
+    if field == 'upi_id':
         return mask_upi(value)
-    return "[REDACTED_PII]"
+    return '[REDACTED_PII]'
 
-def redact_combinatorial(fields_dict):
-    redacted_dict = dict(fields_dict)
-    if 'name' in redacted_dict and redacted_dict['name']:
-        redacted_dict['name'] = mask_name(redacted_dict['name'])
-    if 'email' in redacted_dict and redacted_dict['email']:
-        redacted_dict['email'] = mask_email(redacted_dict['email'])
-    if 'address' in redacted_dict and redacted_dict['address']:
-        redacted_dict['address'] = "[REDACTED_PII]"
-    if 'device_id' in redacted_dict and redacted_dict['device_id']:
-        redacted_dict['device_id'] = "[REDACTED_PII]"
-    if 'ip_address' in redacted_dict and redacted_dict['ip_address']:
-        redacted_dict['ip_address'] = "[REDACTED_PII]"
-    return redacted_dict
+def redact_combinatorial(data):
+    redacted = dict(data)
+    if 'name' in redacted and redacted['name']:
+        redacted['name'] = mask_name(redacted['name'])
+    if 'email' in redacted and redacted['email']:
+        redacted['email'] = mask_email(redacted['email'])
+    if 'address' in redacted and redacted['address']:
+        redacted['address'] = '[REDACTED_PII]'
+    if 'device_id' in redacted and redacted['device_id']:
+        redacted['device_id'] = '[REDACTED_PII]'
+    if 'ip_address' in redacted and redacted['ip_address']:
+        redacted['ip_address'] = '[REDACTED_PII]'
+    return redacted
 
 def has_combinatorial_pii(data):
+    # Count how many combinatorial keys are present and non-empty
     count = 0
-    for field in combinatorial_pii_fields:
-        if field in data and data[field]:
+    for key in COMBINATORIAL_PII:
+        if key in data and str(data[key]).strip():
             count += 1
     return count >= 2
 
-def process_record(json_str):
-    data = json.loads(json_str)
+def process_record(record_json):
+    # Clean up JSON
+    try:
+        data = json.loads(record_json)
+    except Exception:
+        # Try fixing common errors
+        fixed = record_json.replace("'", "\"")
+        try:
+            data = json.loads(fixed)
+        except Exception:
+            # Return unchanged, no pii
+            return record_json, False
+
     is_pii = False
     redacted_data = dict(data)
-    
-    # Check standalone PII fields
-    for field in standalone_pii_fields:
-        if field in data and data[field]:
-            if is_standalone_pii(field, data[field]):
+
+    ###### Standalone PII detection and masking
+    for field in STANDALONE_PII:
+        if field in data and str(data[field]).strip():
+            if is_standalone_pii(field, str(data[field]).strip()):
                 is_pii = True
-                redacted_data[field] = redact_standalone(field, data[field])
-    
-    # Check combinatorial PII presence and redact if needed
+                redacted_data[field] = redact_standalone(field, str(data[field]).strip())
+
+    ###### Combinatorial PII masking if 2 or more are present
     if has_combinatorial_pii(data):
         is_pii = True
         redacted_data = redact_combinatorial(redacted_data)
-    
+
     return json.dumps(redacted_data, ensure_ascii=False), is_pii
 
 def main():
-    import sys
     if len(sys.argv) != 2:
-        print("Usage: python3 detector_full_candidate_name.py input_csv_file.csv")
+        print("Usage: python3 detector_adityaverma7323.py iscp_pii_dataset.csv")
         sys.exit(1)
-    
+
     input_csv = sys.argv[1]
-    output_csv = "redacted_output_candidate_full_name.csv"
-    
-    with open(input_csv, newline='', encoding='utf-8') as infile, \
-         open(output_csv, 'w', newline='', encoding='utf-8') as outfile:
-        
-        reader = csv.DictReader(infile)
-        fieldnames = ['record_id', 'redacted_data_json', 'is_pii']
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-        
+    output_csv = 'redacted_output_adityaverma7323.csv'
+    with open(input_csv, newline='', encoding='utf-8') as fin, open(output_csv, 'w', newline='', encoding='utf-8') as fout:
+        reader = csv.DictReader(fin)
+        writer = csv.DictWriter(fout, fieldnames=['record_id', 'redacted_data_json', 'is_pii'])
         writer.writeheader()
-        
         for row in reader:
-            redacted_json, pii_flag = process_record(row['data_json'])
+            # READ CSV COLUMN EXACTLY AS PRESENT IN HEADER
+            json_str = row.get('data_json') or row.get('Data_json')
+            if not json_str:
+                # Skip rows without the field
+                continue
+            redacted_json, pii_flag = process_record(json_str)
             writer.writerow({
-                "record_id": row['record_id'],
-                "redacted_data_json": redacted_json,
-                "is_pii": pii_flag
+                'record_id': row['record_id'],
+                'redacted_data_json': redacted_json,
+                'is_pii': str(pii_flag)
             })
-    
-    print(f"PII detection and redaction complete. Output saved to {output_csv}")
+    print(f"Redacted output saved to {output_csv}")
 
 if __name__ == "__main__":
     main()
